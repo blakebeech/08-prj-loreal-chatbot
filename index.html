@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Assistant</title>
+    <title>L’Oréal Beauty Advisor</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -12,54 +12,78 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <!------- Header / Branding ------->
-      <header class="site-header">
-        <h1 class="site-title">Smart Product Advisor</h1>
-      </header>
+    <main class="app-shell">
+      <section class="brand-banner" aria-label="L’Oréal branding">
+        <img src="img/loreal-logo.png" alt="L’Oréal logo" class="banner-logo" />
+      </section>
 
-      <!------- Chat Area ------->
-      <main>
-        <section class="chatbox">
+      <article class="chatbot-card" aria-label="L’Oréal Beauty Advisor chatbot">
+        <header class="brand-header">
+          <div class="brand-lockup">
+            <div class="brand-text">
+              <h1 class="site-title">L’Oréal Beauty Advisor</h1>
+              <p class="site-subtitle">
+                Discover products, routines, and recommendations.
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <section
+          id="latestQuestionSection"
+          class="latest-question-section"
+          hidden
+          aria-live="polite"
+        >
+          <p class="latest-question-label">Latest Question</p>
+          <p id="latestQuestion" class="latest-question" hidden></p>
+        </section>
+
+        <section class="chat-area" aria-label="Conversation">
           <div id="chatWindow" class="chat-window">
-            <!-- messages will be appended here via JS -->
+            <!-- JavaScript appends user and assistant message bubbles here -->
           </div>
 
+          <div
+            id="loadingIndicator"
+            class="loading-row"
+            hidden
+            aria-live="polite"
+          >
+            Beauty Advisor is typing...
+          </div>
+        </section>
+
+        <footer class="chat-composer">
           <form id="chatForm" class="chat-form">
             <label for="userInput" class="visually-hidden">Message</label>
             <input
               id="userInput"
               name="userInput"
               type="text"
-              placeholder="Ask me about products or routines…"
+              placeholder="Ask about skincare, makeup, haircare, fragrance, or routines..."
               autocomplete="off"
+              spellcheck="false"
               required
             />
-            <button type="submit" id="sendBtn">
+            <button type="submit" id="sendBtn" aria-label="Send message">
               <span class="material-icons">send</span>
               <span class="visually-hidden">Send</span>
             </button>
           </form>
-        </section>
-      </main>
+        </footer>
+      </article>
+    </main>
 
-      <!------- Footer Links ------->
-      <footer class="site-footer">
-        <p>&copy; 2025 Company Name. All rights reserved.</p>
-        <nav>
-          <!-- These URLs are placeholders -->
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact</a>
-        </nav>
-      </footer>
-    </div>
-
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
+    <!-- Keep secrets.js for local development; remove or ignore it in production when using Cloudflare Workers. -->
     <script src="secrets.js"></script>
     <script src="script.js"></script>
   </body>
